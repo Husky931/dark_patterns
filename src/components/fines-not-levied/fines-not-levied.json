@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_fines_not_levied_fines_not_levieds",
+  "info": {
+    "displayName": "finesNotLevied"
+  },
+  "options": {},
+  "attributes": {
+    "fineId": {
+      "type": "integer"
+    },
+    "date": {
+      "type": "date"
+    },
+    "website": {
+      "type": "string"
+    }
+  }
+}

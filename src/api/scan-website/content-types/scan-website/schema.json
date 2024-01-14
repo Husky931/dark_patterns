@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "scan_websites",
+  "info": {
+    "singularName": "scan-website",
+    "pluralName": "scan-websites",
+    "displayName": "scanWebsite"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "urlsForScanning": {
+      "type": "json"
+    },
+    "jurisdictionURLs": {
+      "type": "enumeration",
+      "enum": [
+        "EC",
+        "USA",
+        "India",
+        "Australia"
+      ]
+    }
+  }
+}

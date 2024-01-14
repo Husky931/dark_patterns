@@ -678,7 +678,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
   options: {
     draftAndPublish: false;
-    timestamps: true;
   };
   attributes: {
     username: Attribute.String &
@@ -707,6 +706,12 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.role'
     >;
+    firstName: Attribute.String & Attribute.Required;
+    lastName: Attribute.String & Attribute.Required;
+    mobileNumber: Attribute.BigInteger;
+    otherPhoneNumber: Attribute.BigInteger;
+    organisation: Attribute.String;
+    organisationRole: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -768,6 +773,173 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
+export interface ApiIssueIssue extends Schema.CollectionType {
+  collectionName: 'issues';
+  info: {
+    singularName: 'issue';
+    pluralName: 'issues';
+    displayName: 'issue';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    domain: Attribute.String;
+    darkPattern: Attribute.Enumeration<['nagging', 'other']>;
+    status: Attribute.Enumeration<['approved', 'other']>;
+    scanNotes: Attribute.Blocks;
+    violation: Attribute.Blocks;
+    caseLawAndInterpretations: Attribute.Blocks;
+    escalationAdvice: Attribute.Blocks;
+    scan_report: Attribute.Relation<
+      'api::issue.issue',
+      'manyToOne',
+      'api::scan-report.scan-report'
+    >;
+    comparison: Attribute.Component<'issue.comparison', true>;
+    scanHistory: Attribute.Component<'scan-history.scan-history', true>;
+    users_permissions_user: Attribute.Relation<
+      'api::issue.issue',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::issue.issue',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::issue.issue',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiScanProfileScanProfile extends Schema.CollectionType {
+  collectionName: 'scan_profiles';
+  info: {
+    singularName: 'scan-profile';
+    pluralName: 'scan-profiles';
+    displayName: 'scanProfile';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    siteBreakdown: Attribute.Enumeration<
+      ['Major categories', 'Minor categories']
+    >;
+    multiDomainScanning: Attribute.Enumeration<['Yes', 'No']>;
+    testingSites: Attribute.Enumeration<['Yes', 'No']>;
+    deployPersonas: Attribute.Enumeration<['Yes', 'No']>;
+    personaTypes: Attribute.Enumeration<['mixed EU', 'other']>;
+    personaLocations: Attribute.Enumeration<['Netherlands spread', 'other']>;
+    personaNumber: Attribute.Integer;
+    frequency: Attribute.Enumeration<['daily', 'weekly', 'monthly']>;
+    depthOfScan: Attribute.Enumeration<['full site', 'other']>;
+    detectionApproach: Attribute.Enumeration<['All Dark Patterns', 'other']>;
+    scanningTeam: Attribute.String;
+    assignedTo: Attribute.String;
+    legalTeam: Attribute.String;
+    startDate: Attribute.Date;
+    reviewDate: Attribute.Date;
+    hardEndDate: Attribute.Date;
+    maxTrialCardHold: Attribute.Float;
+    creditCardPool: Attribute.Integer;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::scan-profile.scan-profile',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::scan-profile.scan-profile',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiScanReportScanReport extends Schema.CollectionType {
+  collectionName: 'scan_reports';
+  info: {
+    singularName: 'scan-report';
+    pluralName: 'scan-reports';
+    displayName: 'scanReport';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    issues: Attribute.Relation<
+      'api::scan-report.scan-report',
+      'oneToMany',
+      'api::issue.issue'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::scan-report.scan-report',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::scan-report.scan-report',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiScanWebsiteScanWebsite extends Schema.CollectionType {
+  collectionName: 'scan_websites';
+  info: {
+    singularName: 'scan-website';
+    pluralName: 'scan-websites';
+    displayName: 'scanWebsite';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    urlsForScanning: Attribute.JSON;
+    jurisdictionURLs: Attribute.Enumeration<
+      ['EC', 'USA', 'India', 'Australia']
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::scan-website.scan-website',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::scan-website.scan-website',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -786,6 +958,10 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
+      'api::issue.issue': ApiIssueIssue;
+      'api::scan-profile.scan-profile': ApiScanProfileScanProfile;
+      'api::scan-report.scan-report': ApiScanReportScanReport;
+      'api::scan-website.scan-website': ApiScanWebsiteScanWebsite;
     }
   }
 }

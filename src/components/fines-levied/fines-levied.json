@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_fines_levied_fines_levieds",
+  "info": {
+    "displayName": "finesLevied"
+  },
+  "options": {},
+  "attributes": {
+    "fineId": {
+      "type": "integer"
+    },
+    "date": {
+      "type": "date"
+    },
+    "website": {
+      "type": "string"
+    },
+    "fineCost": {
+      "type": "decimal"
+    }
+  }
+}

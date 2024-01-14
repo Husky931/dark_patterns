@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "scan_reports",
+  "info": {
+    "singularName": "scan-report",
+    "pluralName": "scan-reports",
+    "displayName": "scanReport"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "issues": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::issue.issue",
+      "mappedBy": "scan_report"
+    }
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "kind": "collectionType",
+  "collectionName": "scan_profiles",
+  "info": {
+    "singularName": "scan-profile",
+    "pluralName": "scan-profiles",
+    "displayName": "scanProfile",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "siteBreakdown": {
+      "type": "enumeration",
+      "enum": [
+        "Major categories",
+        "Minor categories"
+      ]
+    },
+    "multiDomainScanning": {
+      "type": "enumeration",
+      "enum": [
+        "Yes",
+        "No"
+      ]
+    },
+    "testingSites": {
+      "type": "enumeration",
+      "enum": [
+        "Yes",
+        "No"
+      ]
+    },
+    "deployPersonas": {
+      "type": "enumeration",
+      "enum": [
+        "Yes",
+        "No"
+      ]
+    },
+    "personaTypes": {
+      "type": "enumeration",
+      "enum": [
+        "mixed EU",
+        "other"
+      ]
+    },
+    "personaLocations": {
+      "type": "enumeration",
+      "enum": [
+        "Netherlands spread",
+        "other"
+      ]
+    },
+    "personaNumber": {
+      "type": "integer"
+    },
+    "frequency": {
+      "type": "enumeration",
+      "enum": [
+        "daily",
+        "weekly",
+        "monthly"
+      ]
+    },
+    "depthOfScan": {
+      "type": "enumeration",
+      "enum": [
+        "full site",
+        "other"
+      ]
+    },
+    "detectionApproach": {
+      "type": "enumeration",
+      "enum": [
+        "All Dark Patterns",
+        "other"
+      ]
+    },
+    "scanningTeam": {
+      "type": "string"
+    },
+    "assignedTo": {
+      "type": "string"
+    },
+    "legalTeam": {
+      "type": "string"
+    },
+    "startDate": {
+      "type": "date"
+    },
+    "reviewDate": {
+      "type": "date"
+    },
+    "hardEndDate": {
+      "type": "date"
+    },
+    "maxTrialCardHold": {
+      "type": "float"
+    },
+    "creditCardPool": {
+      "type": "integer"
+    }
+  }
+}

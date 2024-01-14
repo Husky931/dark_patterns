@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_issue_comparisons",
+  "info": {
+    "displayName": "comparison"
+  },
+  "options": {},
+  "attributes": {
+    "finesLevied": {
+      "displayName": "finesLevied",
+      "type": "component",
+      "repeatable": false,
+      "component": "fines-levied.fines-levied"
+    },
+    "finesNotLevied": {
+      "displayName": "finesNotLevied",
+      "type": "component",
+      "repeatable": false,
+      "component": "fines-not-levied.fines-not-levied"
+    }
+  }
+}
